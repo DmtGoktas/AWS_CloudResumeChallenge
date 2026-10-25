@@ -1,0 +1,53 @@
+
+name: Backend CI
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "website/**"
+      - "template.yaml"
+      - ".github/workflows/backend-cicd.yaml"
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "website/**"
+      - "template.yaml"
+      - ".github/workflows/backend-cicd.yaml"
+
+permissions:
+  contents: read
+
+jobs:
+  test-and-build:
+    name: Test and Build Lambda
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: website/requirements.txt
+
+      - name: Install dependencies
+        run: python -m pip install -r website/requirements.txt
+
+      - name: Run unit tests
+        working-directory: website
+        run: python -m unittest -v test_lambda_function.py
+
+      - name: Set up AWS SAM CLI
+        uses: aws-actions/setup-sam@v2
+
+      - name: Validate SAM template
+        run: sam validate --lint
+
+      - name: Build SAM application
+        run: sam build
