@@ -1,0 +1,357 @@
+/* =========================
+   RESET
+========================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #eeeeee;
+    color: #333;
+    line-height: 1.6;
+}
+
+
+/* =========================
+   CV CONTAINER
+========================= */
+
+.cv-container {
+    width: 100%;
+    max-width: 850px;
+    margin: 40px auto;
+    background: #ffffff;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.12);
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.header {
+    background: linear-gradient(
+        135deg,
+        #e7b7b7,
+        #f4d5d5
+    );
+
+    padding: 45px 55px;
+    border-bottom: 5px solid #d99b9b;
+}
+
+.header h1 {
+    font-size: 42px;
+    font-weight: 700;
+    color: #333;
+    letter-spacing: 1px;
+}
+
+.job-title {
+    margin-top: 5px;
+    font-size: 18px;
+    color: #666;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+main {
+    padding: 40px 55px;
+}
+
+
+/* =========================
+   SECTIONS
+========================= */
+
+.section {
+    margin-bottom: 35px;
+}
+
+.section h2 {
+    font-size: 18px;
+    color: #b56f6f;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    padding-bottom: 7px;
+    border-bottom: 2px solid #e8c5c5;
+}
+
+.section p {
+    font-size: 14px;
+    text-align: justify;
+}
+
+
+/* =========================
+   EXPERIENCE / PROJECTS
+========================= */
+
+.experience-item,
+.project-item,
+.education-item {
+    margin-bottom: 25px;
+}
+
+.experience-item:last-child,
+.project-item:last-child {
+    margin-bottom: 0;
+}
+
+.experience-item h3,
+.project-item h3,
+.education-item h3 {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 2px;
+}
+
+.experience-item h4,
+.education-item h4 {
+    font-size: 14px;
+    color: #b56f6f;
+    font-weight: 600;
+    margin-bottom: 3px;
+}
+
+.date {
+    display: block;
+    font-size: 13px;
+    color: #777;
+    font-style: italic;
+    margin-bottom: 8px;
+}
+
+
+/* =========================
+   LISTS
+========================= */
+
+ul {
+    padding-left: 20px;
+}
+
+li {
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+
+.simple-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.simple-list li {
+    margin-bottom: 7px;
+}
+
+
+
+
+
+/* =========================
+   SKILLS
+========================= */
+
+.skills {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.skill-group {
+    background: #faf5f5;
+    border-left: 4px solid #d99b9b;
+    padding: 15px;
+    border-radius: 4px;
+}
+
+.skill-group strong {
+    display: block;
+    color: #b56f6f;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.skill-group p {
+    font-size: 13px;
+    text-align: left;
+}
+
+
+/* =========================
+   INTEREST TAGS
+========================= */
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tags span {
+    background: #f3dddd;
+    color: #8f5d5d;
+    padding: 7px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    background: #f4d5d5;
+    text-align: center;
+    padding: 18px;
+    color: #777;
+    font-size: 13px;
+}
+
+
+
+.counter{
+    display: flex;
+    justify-content: center;
+    align-items: center ;
+    gap : 8px;
+    margin: 24px 0;
+    font-size: 14px;
+    color: #888;
+}
+
+#count{
+    font-weight: 600;
+    color: inherit;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 700px) {
+
+    .cv-container {
+        margin: 0;
+        box-shadow: none;
+    }
+
+    .header {
+        padding: 35px 25px;
+    }
+
+    .header h1 {
+        font-size: 32px;
+    }
+
+    main {
+        padding: 30px 25px;
+    }
+
+    .skills {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
+@media (max-width: 430px) {
+
+    body {
+        background: #ffffff;
+    }
+
+    .header {
+        padding: 30px 20px;
+    }
+
+    .header h1 {
+        font-size: 28px;
+    }
+
+    .job-title {
+        font-size: 14px;
+    }
+
+    main {
+        padding: 25px 20px;
+    }
+
+    .section {
+        margin-bottom: 30px;
+    }
+
+    .section h2 {
+        font-size: 16px;
+    }
+
+    .section p,
+    li {
+        font-size: 13px;
+    }
+
+    .experience-item h3,
+    .project-item h3,
+    .education-item h3 {
+        font-size: 15px;
+    }
+
+    .tags span {
+        font-size: 12px;
+    }
+}
+
+
+/* =========================
+   PRINT / PDF
+========================= */
+
+@media print {
+
+    body {
+        background: white;
+    }
+
+    .cv-container {
+        max-width: 100%;
+        margin: 0;
+        box-shadow: none;
+    }
+
+    .header {
+        padding: 30px 40px;
+    }
+
+    main {
+        padding: 25px 40px;
+    }
+
+    footer {
+        display: none;
+    }
+
+    .section {
+        break-inside: avoid;
+    }
+
+    .experience-item,
+    .project-item,
+    .education-item {
+        break-inside: avoid;
+    }
+}
