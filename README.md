@@ -7,6 +7,6 @@ This is my attempt cloud resume challenge in AWS. Cloud Resume Challenge is a mu
   - S3
   - AWS CloudFront
   - Certificate Manager
-  - AWS Lambda ,API Gateway
+  - AWS Lambda, API Gateway
   - DynamoDB
   - GitHub Actions
