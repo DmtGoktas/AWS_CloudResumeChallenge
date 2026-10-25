@@ -21,7 +21,7 @@ class TestVisitorCounter(unittest.TestCase):
 
         #json yanıtı sayaç 6 olmalı
         body = json.loads(result["body"])
-        self.assertEqual(body["count",6])
+        self.assertEqual(body["count"], 6)
 
         mock_table.update_item.assert_called_once_with(
             key={"id":1},
