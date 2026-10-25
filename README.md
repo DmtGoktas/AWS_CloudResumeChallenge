@@ -4,8 +4,8 @@ This is my attempt cloud resume challenge in AWS. Cloud Resume Challenge is a mu
 
 ### Tech-stack
   - AWS S3
-  - **Cloud Prowider:** AWS CloudFront
-  - **Infrastructure as Code:**
+  - AWS CloudFront, Amazon Route 53  
+  - **Infrastructure as Code:** AWS SAM CLI, Terraform
   - **Static Website Framework:** HTML, CSS, JavaScript
   - **Serverless:** AWS Lambda, API Gateway, DynamoDB
   - **CI/CD:** GitHub Actions
