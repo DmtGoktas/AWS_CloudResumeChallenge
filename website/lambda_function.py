@@ -1,13 +1,21 @@
 import json
 import boto3
 
-dynamodb = boto3.resource("dynamodb")
-table = dynamodb.Table("visitorCounter")
+table = None
+
+
+def get_table():
+    global table
+
+    if table is None:
+        table = boto3.resource("dynamodb").Table("visitorCounter")
+
+    return table
 
 
 def lambda_handler(event, context):
     try:
-        response = table.update_item(
+        response = get_table().update_item(
             Key={"id": 1},
             UpdateExpression="ADD #count :inc",
             ExpressionAttributeNames={"#count": "count"},
