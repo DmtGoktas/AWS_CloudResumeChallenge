@@ -1,11 +1,57 @@
-name: Upload website to S3
+
+name: Frontend CI/CD
 
 on:
   push:
     branches:
-    - main
+      - main
+    paths:
+      - "website/index1.html"
+      - "website/script.js"
+      - "website/style2.css"
+      - ".github/workflows/front-end-cicd.yaml"
 
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "website/index1.html"
+      - "website/script.js"
+      - "website/style2.css"
+      - ".github/workflows/front-end-cicd.yaml"
+
+permissions:
+  contents: read
+  id-token: write
 
 jobs:
   deploy:
-    
+    name: Deploy Website to AWS
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        if: github.event_name == 'push'
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::678524951755:role/GitHubActionsFrontendDeployRole
+          aws-region: eu-north-1
+
+      - name: Upload website files to S3
+        if: github.event_name == 'push'
+        run: |
+          aws s3 sync website/ s3://demetgoktas/ \
+            --exclude "*" \
+            --include "index1.html" \
+            --include "script.js" \
+            --include "style2.css"
+
+      - name: Invalidate CloudFront cache
+        if: github.event_name == 'push'
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id E26U4NGDOTG34T \
+            --paths "/*"
