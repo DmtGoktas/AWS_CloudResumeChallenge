@@ -23,11 +23,27 @@ Resources:
       Runtime: python3.12
       Timeout: 10
       Policies:
-        - DynamoDBCrudPolicy:
-            TableName: visitorCounter
+        - Statement:
+            - Effect: Allow
+              Action:
+                - dynamodb:UpdateItem
+              Resource: !GetAtt VisitorCounterTable.Arn
       Events:
         CounterApi:
           Type: HttpApi
           Properties:
             Path: /count
             Method: GET
+  VisitorCounterTable:
+    Type: AWS::DynamoDB::Table
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      TableName: visitorCounter
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: N
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      BillingMode: PAY_PER_REQUEST
