@@ -1,5 +1,5 @@
 
-name: Backend CI
+name: Backend CI/CD
 
 on:
   push:
@@ -21,8 +21,7 @@ permissions:
   contents: read
 
 jobs:
-  test-and-build:
-    name: Test and Build Lambda
+  test-build-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -51,3 +50,21 @@ jobs:
 
       - name: Build SAM application
         run: sam build
+
+      - name: Configure AWS credentials
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::678524951755:role/GitHubActionsBackendDeployRole
+          aws-region: eu-north-1
+
+      - name: Deploy to AWS
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          sam deploy \
+            --stack-name cloud-resume-challenge-sam \
+            --region eu-north-1 \
+            --capabilities CAPABILITY_IAM \
+            --resolve-s3 \
+            --no-confirm-changeset \
+            --no-fail-on-empty-changeset
