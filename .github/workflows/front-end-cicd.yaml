@@ -45,10 +45,11 @@ jobs:
         if: github.event_name == 'push'
         run: |
           aws s3 sync website/ s3://demetgoktas/ \
-            --exclude "*" \
-            --include "index1.html" \
-            --include "script.js" \
-            --include "style2.css"
+            --exclude "lambda_function.py" \
+            --exclude "test_lambda_function.py" \
+            --exclude "requirements.txt" \
+            --exclude "README.txt" \
+            --exclude "__pycache__/*"
 
       - name: Invalidate CloudFront cache
         if: github.event_name == 'push'
