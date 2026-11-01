@@ -1,0 +1,16 @@
+{
+  "Version":"2012-10-17",
+  "Statement":[{
+    "Effect":"Allow",
+    "Principal":{
+      "Federated":"arn:aws:iam::678524951755:oidc-provider/token.actions.githubusercontent.com"
+    },
+    "Action":"sts:AssumeRoleWithWebIdentity",
+    "Condition":{
+      "StringEquals":{
+        "token.actions.githubusercontent.com:aud":"sts.amazonaws.com",
+        "token.actions.githubusercontent.com:sub":"repo:DmtGoktas/AWS_CloudResumeChallenge:ref:refs/heads/main"
+      }
+    }
+  }]
+}

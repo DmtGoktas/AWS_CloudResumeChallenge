@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", async () => {
     const counter = document.getElementById("count");
-
     if (!counter) return;
 
     try {

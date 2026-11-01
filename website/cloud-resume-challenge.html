@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="How I built my Cloud Resume Challenge using AWS, serverless services, and GitHub Actions.">
+  <link rel="stylesheet" href="style2.css">
+  <title>Cloud Resume Challenge | Demet Göktaş</title>
+</head>
+<body>
+  <div class="site-shell">
+    <header class="site-header">
+  <a class="brand" href="index1.html">DEMET GÖKTAŞ</a>
+  <nav class="nav" aria-label="Main navigation">
+    <a class="" href="index1.html">Home</a>
+    <a class="" href="resume.html">Resume</a>
+    <a class="active" href="cloud-resume-challenge.html">Cloud Resume Challenge</a>
+  </nav>
+</header>
+    <main>
+      <p class="eyebrow">Technical article · AWS</p>
+      <h1>Building My Cloud Resume Challenge with AWS</h1>
+      <p class="lead">A practical project combining a static website, serverless backend, infrastructure as code, and automated deployments.</p>
+
+      <section class="content-section">
+        <h2>Introduction</h2>
+        <p>I built this project to gain practical experience with AWS cloud services and to bring together frontend hosting, serverless application development, infrastructure as code, and CI/CD automation in one working website.</p>
+      </section>
+
+      <section class="content-section">
+        <h2>Architecture and AWS Services</h2>
+        <div class="grid">
+          <article class="card"><h3>Amazon S3</h3><p>Stores the static website files.</p></article>
+          <article class="card"><h3>Amazon CloudFront</h3><p>Distributes the website content.</p></article>
+          <article class="card"><h3>Amazon API Gateway</h3><p>Exposes the visitor counter HTTP endpoint.</p></article>
+          <article class="card"><h3>AWS Lambda</h3><p>Runs the backend visitor counter logic.</p></article>
+          <article class="card"><h3>Amazon DynamoDB</h3><p>Stores the visitor count.</p></article>
+          <article class="card"><h3>AWS SAM</h3><p>Defines and builds the serverless backend.</p></article>
+          <article class="card"><h3>GitHub Actions</h3><p>Runs automated checks and deployments.</p></article>
+          <article class="card"><h3>AWS IAM &amp; OIDC</h3><p>Controls permissions and enables GitHub Actions to access AWS without long-lived access keys.</p></article>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2>Frontend Deployment</h2>
+        <p>The frontend is hosted in an Amazon S3 bucket and delivered through CloudFront. A GitHub Actions workflow automates publishing website changes to S3 and invalidating the CloudFront cache.</p>
+      </section>
+
+      <section class="content-section">
+        <h2>Serverless Visitor Counter</h2>
+        <p>The visitor counter uses API Gateway, Lambda, and DynamoDB. API Gateway receives the HTTP request and invokes the Lambda function. The function updates the stored counter in DynamoDB using an atomic update operation and returns the current count to the website.</p>
+      </section>
+
+      <section class="content-section">
+        <h2>Infrastructure as Code and Backend CI/CD</h2>
+        <p>I used AWS SAM to describe and build the backend application. The backend GitHub Actions workflow runs Python unit tests, validates the SAM template, builds the application, and deploys it to AWS after a successful push to the main branch.</p>
+      </section>
+
+      <section class="content-section">
+        <h2>Security</h2>
+        <p>I configured GitHub Actions OIDC authentication so the workflow can assume an AWS IAM role without storing long-term AWS access keys in GitHub secrets. I also configured the Lambda execution role with permission to update the visitor counter DynamoDB table.</p>
+      </section>
+
+      <section class="content-section">
+        <h2>What I Learned</h2>
+        <ul>
+          <li>Hosting and distributing static websites with S3 and CloudFront.</li>
+          <li>Building a serverless API with API Gateway and Lambda.</li>
+          <li>Persisting and updating application data with DynamoDB.</li>
+          <li>Defining backend infrastructure with AWS SAM.</li>
+          <li>Automating tests, builds, and deployments with GitHub Actions.</li>
+          <li>Using OIDC to connect GitHub Actions to AWS.</li>
+          <li>Debugging IAM permissions and deployment workflows.</li>
+        </ul>
+      </section>
+
+      <section class="content-section">
+        <h2>Conclusion</h2>
+        <p>This project gave me hands-on experience connecting several AWS services into a working application. It also helped me understand how cloud infrastructure, application code, security permissions, and CI/CD workflows fit together.</p>
+        <div class="hero-actions">
+          <a class="button" href="https://d2jjpw4uxqt6rc.cloudfront.net" target="_blank" rel="noopener noreferrer">Visit the live website</a>
+          <a class="button secondary" href="https://github.com/DmtGoktas/AWS_CloudResumeChallenge" target="_blank" rel="noopener noreferrer">View GitHub repository</a>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+  <div><strong>Contact</strong><br><span>Let's connect professionally.</span></div>
+  <div class="footer-links">
+    <a href="https://github.com/DmtGoktas" target="_blank" rel="noopener noreferrer">GitHub</a>
+    <a href="https://github.com/DmtGoktas/AWS_CloudResumeChallenge" target="_blank" rel="noopener noreferrer">Project Repository</a>
+  </div>
+  <span>© 2026 Demet Göktaş</span>
+</footer>
+  </div>
+</body>
+</html>
