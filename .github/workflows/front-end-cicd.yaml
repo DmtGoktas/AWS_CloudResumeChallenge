@@ -21,8 +21,9 @@ on:
       - ".github/workflows/front-end-cicd.yaml"
 
 permissions:
-  contents: read
   id-token: write
+  contents: read
+
 
 jobs:
   deploy:
